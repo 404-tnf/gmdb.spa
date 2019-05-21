@@ -16,6 +16,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
    declarations: [
@@ -37,7 +38,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       MDBBootstrapModule.forRoot(),
       ToastrModule.forRoot(),
       HttpClientModule,
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
+      NgxSpinnerModule
    ],
    providers: [],
    bootstrap: [

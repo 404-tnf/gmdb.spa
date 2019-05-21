@@ -10,6 +10,7 @@ import { IReview } from './interfaces/IReview';
 import { IPassword } from './interfaces/IPassword';
 import { ToastrService } from 'ngx-toastr';
 import { Router} from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +21,10 @@ export class DataProcessingServiceService {
   public userEmail: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   
 
-  constructor(private http: HttpClient , private toastr: ToastrService , private router : Router ) { }
+  constructor(private http: HttpClient , private toastr: ToastrService , private router : Router , private spinner: NgxSpinnerService) { }
 
     public getMoviesBasedOnSearch(searchCriteria: ISearch): BehaviorSubject<Array<IMovies>> {
+      this.spinner.show();
       this.http
         .get<any>(environments.baseURL + '/movies', {
           params: {
@@ -74,10 +76,16 @@ export class DataProcessingServiceService {
                   reviews: reviewsVal
                 });
               });
-              return this.moviesData.next(movies);
+              setTimeout(() => {
+                this.spinner.hide();
+                return this.moviesData.next(movies);
+            }, 200);
             }
             else {
-              return this.moviesData.next(null);
+              setTimeout(() => {
+                this.spinner.hide();
+                return this.moviesData.next(null);
+            }, 200);
             }
           });
         return this.moviesData;
