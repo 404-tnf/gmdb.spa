@@ -9,13 +9,21 @@
                 <!-- <a class="nav-item nav-link active" routerLink="/home">Home <span class="sr-only">(current)</span></a> -->
             </li>
         </ul>
-        <ul class="navbar-nav" >
+        <ul class="navbar-nav" *ngIf="userName == null">
             <li class="nav-item">
                 <a  class="nav-link" routerLink="/signin">Sign in<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a  class="nav-link" routerLink="/signup">Sign up <span class="sr-only">(current)</span></a>
             </li>
+        </ul>
+        <ul class="navbar-nav" *ngIf="userName != null">
+                <li class="nav-item">
+                    <a  class="nav-link">{{userName}}<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                        <a  class="nav-link" routerLink="/" (click)="logout()">Logout<span class="sr-only">(current)</span></a>
+                </li>
         </ul>
     </div>
 </nav>

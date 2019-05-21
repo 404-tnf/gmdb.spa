@@ -5,8 +5,8 @@
     <img class="logo" alt="Angular Logo" src="../../assets/Images/gmdb.jpg"/>
     <form [formGroup]="searchForm" class="form-inline search">
         <div class="dropdown" aria-placeholder="Hi">
-        <select class="form-control" formControlName="criteria" >
-            <option *ngFor="let value of criteriaDropdownValues" value="{{value}}">{{value}}</option>
+        <select class="form-control" formControlName="criteria">
+            <option *ngFor="let value of criteriaDropdownValues" [value]="value" >{{value}}</option>
         </select>
         </div>
         <input class="form-control " formControlName="textInput" type="text" placeholder="What are you looking for?" class="searchTerm"> 

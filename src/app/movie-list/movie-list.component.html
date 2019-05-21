@@ -1,6 +1,6 @@
 <div class="background">
   <h1 class="heading">Search results</h1>
-  <div class="movie-list">
+  <div class="movie-list" *ngIf="hasData">
     <div class="movie" *ngFor="let movie of moviesData">
         <div class="card">
             <div class="card-header">
@@ -17,7 +17,7 @@
                     <p class="card-text"><b>Language:</b> {{movie.language}}</p>
                   </div>
                   <div class="card-text details">
-                      <button class="btn btn-primary" (click)="redirectToPage(movie.movieId)">Details</button>
+                      <button class="btn btn-primary" (click)="redirectToPage(movie.title)">Details</button>
                   </div>
               </td>
               <td>
@@ -29,5 +29,6 @@
           </div>
     </div>
   </div>
+  <div *ngIf="!hasData"><h2>No Search Results found for {{criteria}} for {{value}}</h2></div>
 </div>
 

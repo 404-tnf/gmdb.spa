@@ -16,7 +16,7 @@
         rgba(255, 255, 255, 1), 
         rgb(255, 255, 255, 1)
         ) !important; /* W3C */
-    opacity: .7;
+    opacity: .85;
 }
 
 .rating {
@@ -35,4 +35,17 @@
 
 .btn-link  {
     color: black;
+}
+
+.buttons {
+    float: right;
+}
+
+.save {
+    margin-right: 20px;
+}
+
+.review :hover {
+    color: #1F58B4;
+    cursor: pointer;
 }

@@ -19,7 +19,7 @@ export class LandingComponent implements OnInit {
 
   public ngOnInit(): void { 
     this.searchForm = this.fb.group({
-      criteria: [''],
+      criteria: ['title'],
       textInput: ['']
     });
   }
@@ -29,13 +29,6 @@ export class LandingComponent implements OnInit {
        criteria: this.searchForm.controls["criteria"].value,
        text: this.searchForm.controls["textInput"].value,
     }
-    this.dps.getMoviesBasedOnSearch(searchCriteria);
-    this.dps.moviesData.subscribe(val => {
-      if (val != null && val.length > 0) {
-        this.router.navigate(['/movielist']);
-      } else {
-        console.log("dont"); //refactor
-      }
-    });
+    this.router.navigate(['/movielist'], { queryParams: {criteria: searchCriteria.criteria, value: searchCriteria.text} });
   }
 }

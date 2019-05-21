@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ILogin } from '../interfaces/ILogin';
 import { DataProcessingServiceService } from '../data-processing-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -9,10 +10,9 @@ import { DataProcessingServiceService } from '../data-processing-service.service
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-  // public loginText: string = "Login";
   public loginForm: FormGroup;
   
-  constructor(private fb:FormBuilder, private dps: DataProcessingServiceService) {   }
+  constructor(private fb:FormBuilder, private dps: DataProcessingServiceService, private router : Router) {   }
 
   public ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -35,5 +35,9 @@ export class SigninComponent implements OnInit {
       password: this.loginForm.controls["password"].value
     }
     this.dps.postLoginData(loginData);
+  }
+
+  public forgot(): void{
+    this.router.navigate(['/forgotPassword']);
   }
 }

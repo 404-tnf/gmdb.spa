@@ -24,9 +24,13 @@
                 <li class="list-group-item"><b>Website: </b>{{movieDetailsData.website}}</li>
                 <li class="list-group-item">
                   <ul class="list-group list-group-flush">
-                    <b>Reviews: </b> 
-                    <div *ngFor="let review of movieDetailsData.reviews">       
-                    <ngb-accordion #acc="ngbAccordion">
+                    <b class="review" (click)="showReviews()">
+                      <span *ngIf="openReviews">Hide Reviews: </span>
+                      <span *ngIf="!openReviews">Show Reviews: </span>
+                    </b> 
+                    <div *ngIf="openReviews">
+                      <div *ngFor="let review of movieDetailsData.reviews">       
+                      <ngb-accordion #acc="ngbAccordion">
                         <ngb-panel class="review-title">
                         <ng-template ngbPanelHeader let-opened="opened">
                             <div class="d-flex align-items-center justify-content-between">
@@ -38,11 +42,39 @@
                           </ng-template>
                         </ngb-panel>
                       </ngb-accordion>     
-                  </div>
+                      </div>
+                    </div>
                   </ul>
               </ul>
-              <div class="card-body">
-                <button href="#" class="btn btn-primary">Add Review</button>
+              <div *ngIf="screenName != null" class="card-body">
+                <div *ngIf="showBoxes == true">
+                  <form [formGroup]="reviewForm">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Title :</span>
+                      </div>
+                      <input type="text"  placeholder="Enter review title" formControlName="title" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Review :</span>
+                      </div>
+                      <textarea class="form-control"  placeholder="Enter your review" formControlName="reviewText" aria-label="With textarea"></textarea>
+                    </div>
+                    <br>
+                    <div class="buttons">
+                        <button class="btn btn-info save" (click)="saveReview()">Save</button>
+                        <button class="btn btn-info cancel" (click)="hideReviewBoxes()">Cancel</button>
+                    </div>
+                  </form>
+                  <br>
+                  <br>
+                </div>
+                <button href="#" class="btn btn-primary" (click)="showReviewBoxes()">Add Review</button>
+              </div>
+         
+              <div *ngIf="screenName == null" class="card-body">
+                  <button class="btn btn-primary" (click)="redirectToSign()">Please sign in to add Reviews</button>
               </div>
         </td>
       </tr>

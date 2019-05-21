@@ -11,6 +11,7 @@ import { IPassword } from '../interfaces/IPassword';
 })
 export class ForgotPasswordComponent implements OnInit {
 
+
   public forgotPassword: FormGroup;
   
   constructor(private fb:FormBuilder, private dps: DataProcessingServiceService) {   }
@@ -42,6 +43,5 @@ export class ForgotPasswordComponent implements OnInit {
       updatedPassword: this.forgotPassword.controls["password"].value
     }
     this.dps.postForgotPasswordData(passwordData);
-    
   }
 }
