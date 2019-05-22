@@ -19,7 +19,8 @@ export class DataProcessingServiceService {
   public moviesData: BehaviorSubject<Array<IMovies>> = new BehaviorSubject<Array<IMovies>>(null);
   public userName: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   public userEmail: BehaviorSubject<string> = new BehaviorSubject<string>(null);
-  
+  public urlString: BehaviorSubject<string> = new BehaviorSubject<string>(environments.baseURL);
+
 
   constructor(private http: HttpClient , private toastr: ToastrService , private router : Router , private spinner: NgxSpinnerService) { }
 
@@ -104,7 +105,7 @@ export class DataProcessingServiceService {
           });
           this.userName.next(this.parseString(value)[1]);
           this.userEmail.next(this.parseString(value)[2]);
-          this.router.navigate(['/']);
+          this.router.navigate(['/' + this.urlString.value]);
         }}, (error) => {
           if(error.error != null) {
             this.toastr.error("Please validate your credentials" , null , {
@@ -128,6 +129,7 @@ export class DataProcessingServiceService {
             positionClass:'toast-top-full-width',
             timeOut: 700 
           });
+          this.router.navigate(['/signin']);
         }},(error) => {
           if(error.error != null) {
             this.toastr.error("Email already exists" , null , {

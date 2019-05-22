@@ -28,6 +28,7 @@
     "core-js": "^2.5.4",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "heroku-ssl-redirect": "0.0.4",
     "jquery": "^3.4.1",
     "ngx-spinner": "^7.1.4",
     "ngx-toastr": "^10.0.4",
