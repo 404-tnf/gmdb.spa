@@ -19,8 +19,7 @@ export class DataProcessingServiceService {
   public moviesData: BehaviorSubject<Array<IMovies>> = new BehaviorSubject<Array<IMovies>>(null);
   public userName: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   public userEmail: BehaviorSubject<string> = new BehaviorSubject<string>(null);
-  public urlString: BehaviorSubject<string> = new BehaviorSubject<string>(environments.baseURL);
-
+  public urlString: BehaviorSubject<string> = new BehaviorSubject<string>("");
 
   constructor(private http: HttpClient , private toastr: ToastrService , private router : Router , private spinner: NgxSpinnerService) { }
 
@@ -105,7 +104,7 @@ export class DataProcessingServiceService {
           });
           this.userName.next(this.parseString(value)[1]);
           this.userEmail.next(this.parseString(value)[2]);
-          this.router.navigate(['/' + this.urlString.value]);
+          this.router.navigateByUrl(this.urlString.getValue());   
         }}, (error) => {
           if(error.error != null) {
             this.toastr.error("Please validate your credentials" , null , {
@@ -175,6 +174,8 @@ export class DataProcessingServiceService {
       });
       return reviewAdded;
     }
+
+  
 
     private parseString(successMessage: string): Array<string> {
       return successMessage.split('-');

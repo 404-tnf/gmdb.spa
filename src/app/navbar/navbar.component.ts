@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
   }
 
   public logout(): void {
+    this.dps.urlString.next("");
     this.dps.userName.next(null);
     this.toastrService.success("Logged out" , null , {
       positionClass:'toast-top-full-width'

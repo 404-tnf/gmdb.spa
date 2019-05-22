@@ -6,14 +6,16 @@ import {SignupComponent} from './signup/signup.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { DataProcessingServiceService } from './data-processing-service.service';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'signin', component: SigninComponent },
+  { path: 'signin',  component: SigninComponent },
   { path:'signup', component: SignupComponent },
   { path: 'movielist', component: MovieListComponent},
   { path: 'movie', component: MovieDetailsComponent},
-  { path: 'forgotPassword', component: ForgotPasswordComponent}
+  { path: 'forgotPassword', component: ForgotPasswordComponent},
+  { path: '**', redirectTo: ''}
 ];
 
 @NgModule({
@@ -21,3 +23,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

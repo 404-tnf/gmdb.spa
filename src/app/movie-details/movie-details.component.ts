@@ -41,6 +41,7 @@ export class MovieDetailsComponent implements OnInit{
   }
 
   public redirectToSign(): void {
+    this.dps.urlString.next(this.router.url);
     this.router.navigate(['/signin']);
   }
 
